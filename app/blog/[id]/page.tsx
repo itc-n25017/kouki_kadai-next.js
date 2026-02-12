@@ -18,29 +18,25 @@ export default async function BlogDetail({
   const blog = await getBlog(id);
 
   return (
-    <main style={{ padding: 20, maxWidth: 800, margin: "auto" }}>
-      <h1>{blog.title}</h1>
+    <main className="detail">
+      {/* 左：画像 */}
+      <div className="detail-image">
+        {blog.eyecatch && <img src={blog.eyecatch.url} alt={blog.title} />}
+      </div>
 
-      {blog.eyecatch && (
-        <img
-          src={blog.eyecatch.url}
-          alt={blog.title}
-          style={{
-            width: "100%",
-            borderRadius: 12,
-            boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
-          }}
+      {/* 右：説明 */}
+      <div className="detail-info">
+        <h1>{blog.title}</h1>
+
+        <p className="crew">所属：{blog.crew}</p>
+
+        {blog.bounty && <p className="bounty">懸賞金：{blog.bounty} ベリー</p>}
+
+        <div
+          className="content"
+          dangerouslySetInnerHTML={{ __html: blog.content }}
         />
-      )}
-
-      <p style={{ color: "#e63946", fontWeight: "bold" }}>
-        クルー：{blog.crew}
-      </p>
-
-      <div
-        dangerouslySetInnerHTML={{ __html: blog.content }}
-        style={{ marginTop: 20, lineHeight: 1.7 }}
-      />
+      </div>
     </main>
   );
 }

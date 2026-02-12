@@ -90,3 +90,99 @@ h1 {
   color: white;
   margin-top: 40px;
 }
+
+/* ===== 詳細ページ ===== */
+
+.detail {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1000px;
+  margin: auto;
+  align-items: flex-start;
+}
+
+.detail-image img {
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.detail-info {
+  flex: 1;
+}
+
+.detail-info h1 {
+  text-align: left;
+}
+
+.crew {
+  color: #e63946;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.content {
+  line-height: 1.7;
+}
+/* ===== 図鑑UI ===== */
+
+.dex {
+  padding: 20px;
+}
+
+.dex-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.dex-card {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff, #e6f2ff);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.dex-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+
+.dex-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.dex-card h3 {
+  margin: 10px 0 4px;
+  color: #1d3557;
+}
+
+.dex-card p {
+  color: #e63946;
+  font-weight: bold;
+}
+
+/* 懸賞金バッジ */
+.bounty-badge {
+  position: absolute;
+  bottom: 10px; /* 下 */
+  right: 10px; /* 右 */
+  background: rgba(255, 215, 0, 0.95);
+  color: #111;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 999px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+}

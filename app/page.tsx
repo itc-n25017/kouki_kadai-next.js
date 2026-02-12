@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main style={{ textAlign: "center", marginTop: "60px" }}>
-      <h1>Web Front Blog</h1>
+      <h1>one piece</h1>
 
-      <p style={{ marginTop: "20px" }}>microCMS を使ったブログサイト</p>
+      <p style={{ marginTop: "20px" }}>ワンピースキャラ紹介</p>
 
       <Link
         href="/blog"

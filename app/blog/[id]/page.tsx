@@ -14,23 +14,32 @@ export default async function BlogDetail({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params; // ★ ここが重要（await）
-
+  const { id } = await params;
   const blog = await getBlog(id);
 
   return (
-    <main style={{ padding: 20 }}>
+    <main style={{ padding: 20, maxWidth: 800, margin: "auto" }}>
       <h1>{blog.title}</h1>
 
       {blog.eyecatch && (
-        <img src={blog.eyecatch.url} width={400} alt={blog.title} />
+        <img
+          src={blog.eyecatch.url}
+          alt={blog.title}
+          style={{
+            width: "100%",
+            borderRadius: 12,
+            boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+          }}
+        />
       )}
 
-      <p>クルー：{blog.crew}</p>
+      <p style={{ color: "#e63946", fontWeight: "bold" }}>
+        クルー：{blog.crew}
+      </p>
 
       <div
         dangerouslySetInnerHTML={{ __html: blog.content }}
-        style={{ marginTop: 20 }}
+        style={{ marginTop: 20, lineHeight: 1.7 }}
       />
     </main>
   );

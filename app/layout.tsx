@@ -1,12 +1,9 @@
 import "./globals.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import type { Metadata } from "next";
+import Link from "next/link";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
-  title: "Web Front Blog",
-  description: "microCMS Blog Site",
+export const metadata = {
+  title: "ONE PIECE キャラ図鑑",
+  description: "麦わらの一味キャラクター一覧",
 };
 
 export default function RootLayout({
@@ -17,9 +14,22 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <Header />
+        {/* ヘッダー */}
+        <header className="header">
+          <Link href="/" className="logo">
+            🏴‍☠️ ONE PIECE 図鑑
+          </Link>
+
+          <nav>
+            <Link href="/blog">キャラクター</Link>
+          </nav>
+        </header>
+
+        {/* ページ本体 */}
         {children}
-        <Footer />
+
+        {/* フッター */}
+        <footer className="footer">© ONE PIECE FAN SITE</footer>
       </body>
     </html>
   );

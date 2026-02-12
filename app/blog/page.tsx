@@ -5,7 +5,9 @@ import { Blog } from "@/app/types/blog";
 async function getBlogs(): Promise<Blog[]> {
   const data = await client.get({
     endpoint: "blog",
-    queries: { orders: "order" }, // 並び順フィールド無ければ消してOK
+    queries: {
+      orders: "order",
+    },
   });
   return data.contents;
 }
@@ -21,12 +23,6 @@ export default async function BlogPage() {
         {blogs.map((blog) => (
           <Link key={blog.id} href={`/blog/${blog.id}`}>
             <div className="dex-card">
-              {/* 懸賞金 */}
-              {blog.bounty && (
-                <div className="bounty-badge">{blog.bounty} B</div>
-              )}
-
-              {/* 画像 */}
               {blog.eyecatch && (
                 <img
                   src={blog.eyecatch.url}
@@ -36,10 +32,8 @@ export default async function BlogPage() {
                 />
               )}
 
-              {/* 名前 */}
               <h3>{blog.title}</h3>
 
-              {/* クルー */}
               {blog.crew && <p>{blog.crew}</p>}
             </div>
           </Link>

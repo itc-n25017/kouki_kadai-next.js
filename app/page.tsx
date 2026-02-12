@@ -19,7 +19,7 @@ export default function Home() {
           borderRadius: "6px",
         }}
       >
-        記事一覧を見る
+        キャラ図鑑へGO!
       </Link>
     </main>
   );

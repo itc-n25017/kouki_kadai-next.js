@@ -1,42 +1,50 @@
 import { client } from "@/app/lib/microcms";
 import { Blog } from "@/app/types/blog";
 
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
 async function getBlog(id: string): Promise<Blog> {
-  const data = await client.get({
+  return await client.get({
     endpoint: "blog",
     contentId: id,
   });
-  return data;
 }
 
-export default async function BlogDetail({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
-  const blog = await getBlog(id);
+export default async function BlogDetail({ params }: Props) {
+  const blog = await getBlog(params.id);
 
   return (
-    <main className="detail">
-      {/* 左：画像 */}
-      <div className="detail-image">
-        {blog.eyecatch && <img src={blog.eyecatch.url} alt={blog.title} />}
-      </div>
+    <main>
+      <h1>{blog.title}</h1>
 
-      {/* 右：説明 */}
-      <div className="detail-info">
-        <h1>{blog.title}</h1>
-
-        <p className="crew">所属：{blog.crew}</p>
-
-        {blog.bounty && <p className="bounty">懸賞金：{blog.bounty} ベリー</p>}
-
-        <div
-          className="content"
-          dangerouslySetInnerHTML={{ __html: blog.content }}
+      {/* 画像 */}
+      {blog.eyecatch && blog.eyecatch.url && (
+        <img
+          src={blog.eyecatch.url}
+          alt={blog.title}
+          width="600"
+          height="400"
         />
-      </div>
+      )}
+
+      {/* クルー */}
+      {blog.crew && <p>クルー：{blog.crew}</p>}
+
+      {/* 懸賞金 */}
+      {blog.bounty !== undefined && <p>懸賞金：{blog.bounty} B</p>}
+
+      {/* 本文（undefined対策済み） */}
+      {blog.content && (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: blog.content,
+          }}
+        />
+      )}
     </main>
   );
 }

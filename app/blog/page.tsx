@@ -5,7 +5,7 @@ import { Blog } from "@/app/types/blog";
 async function getBlogs(): Promise<Blog[]> {
   const data = await client.get({
     endpoint: "blog",
-    queries: { orders: "order" }, // 並び順フィールド使用（無ければ消してOK）
+    queries: { orders: "order" }, // 並び順フィールド無ければ消してOK
   });
   return data.contents;
 }
@@ -28,14 +28,19 @@ export default async function BlogPage() {
 
               {/* 画像 */}
               {blog.eyecatch && (
-                <img src={blog.eyecatch.url} alt={blog.title} />
+                <img
+                  src={blog.eyecatch.url}
+                  alt={blog.title}
+                  width="400"
+                  height="250"
+                />
               )}
 
               {/* 名前 */}
               <h3>{blog.title}</h3>
 
               {/* クルー */}
-              <p>{blog.crew}</p>
+              {blog.crew && <p>{blog.crew}</p>}
             </div>
           </Link>
         ))}

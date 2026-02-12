@@ -12,26 +12,26 @@ async function getBlog(id: string): Promise<Blog> {
 export default async function BlogDetail({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const blog = await getBlog(params.id);
+  const { id } = await params; // ★ ここが重要（await）
+
+  const blog = await getBlog(id);
 
   return (
     <main style={{ padding: 20 }}>
       <h1>{blog.title}</h1>
 
-      {blog.eyecatch && <img src={blog.eyecatch.url} width={400} />}
+      {blog.eyecatch && (
+        <img src={blog.eyecatch.url} width={400} alt={blog.title} />
+      )}
 
-      <p>
-        <b>所属：</b>
-        {blog.crew}
-      </p>
-      <p>
-        <b>懸賞金：</b>
-        {blog.bounty}
-      </p>
+      <p>クルー：{blog.crew}</p>
 
-      <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+      <div
+        dangerouslySetInnerHTML={{ __html: blog.content }}
+        style={{ marginTop: 20 }}
+      />
     </main>
   );
 }

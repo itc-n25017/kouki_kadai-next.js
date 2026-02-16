@@ -259,3 +259,52 @@ h1 {
   padding: 12px;
   font-size: 16px;
 }
+
+/* ===== 全体背景 ===== */
+body {
+  margin: 0;
+  font-family: sans-serif;
+
+  /* 海っぽいグラデーション */
+  background: linear-gradient(180deg, #77c4ff 0%, #bfe6ff 40%, #ffffff 100%);
+
+  min-height: 100vh;
+}
+
+/* うっすら模様 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/map.png"); /* publicフォルダに入れる */
+  background-size: 600px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* ===== 巻物セクション ===== */
+.scroll-section {
+  background: #f8f1df;
+  border-radius: 12px;
+  padding: 20px 25px;
+  margin-bottom: 40px;
+
+  /* 紙っぽい影 */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+  /* ちょっと古紙感 */
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.02),
+    rgba(0, 0, 0, 0.02) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+/* 見出し */
+.scroll-section h2 {
+  border-bottom: 2px dashed #8b6f47;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}

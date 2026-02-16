@@ -52,6 +52,8 @@ export default function Search({ blogs }: { blogs: Blog[] }) {
     "九蛇海賊団",
     "百獣海賊団",
     "ロジャー海賊団",
+    "白ひげ海賊団",
+    "ドンキホーテ海賊団",
   ];
 
   const sortedCrews = [
@@ -130,7 +132,7 @@ export default function Search({ blogs }: { blogs: Blog[] }) {
       {sortedCrews
         .filter((crew) => selectedCrew === "all" || crew === selectedCrew)
         .map((crew) => (
-          <section key={crew} style={{ marginBottom: 40 }}>
+          <section key={crew} className="scroll-section">
             <h2 style={{ borderBottom: "2px solid #ccc" }}>{crew}</h2>
 
             <div className="dex-grid">

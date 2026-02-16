@@ -2,6 +2,7 @@ export type Blog = {
   id: string;
   title: string;
   crew?: string;
+  suuji?: number;
   bounty?: number;
   eyecatch?: {
     url: string;

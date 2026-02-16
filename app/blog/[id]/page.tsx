@@ -7,16 +7,28 @@ type Props = {
   }>;
 };
 
-async function getBlog(id: string): Promise<Blog> {
-  return await client.get({
-    endpoint: "blog",
-    contentId: id,
-  });
+// =========================
+// 記事取得（失敗しても落ちない）
+// =========================
+async function getBlog(id: string): Promise<Blog | null> {
+  try {
+    return await client.get({
+      endpoint: "blog",
+      contentId: id,
+    });
+  } catch {
+    return null;
+  }
 }
 
 export default async function BlogDetail({ params }: Props) {
   const { id } = await params;
   const blog = await getBlog(id);
+
+  // ⭐ 記事が無いとき
+  if (!blog) {
+    return <div style={{ padding: "40px" }}>記事が存在しません</div>;
+  }
 
   return (
     <main style={{ padding: "40px" }}>
@@ -43,7 +55,7 @@ export default async function BlogDetail({ params }: Props) {
 
           {blog.crew && <p>クルー：{blog.crew}</p>}
 
-          {blog.bounty !== undefined && <p>懸賞金：{blog.bounty} B</p>}
+          {blog.bounty !== undefined && <p>懸賞金：{blog.bounty}</p>}
 
           {blog.content && (
             <div

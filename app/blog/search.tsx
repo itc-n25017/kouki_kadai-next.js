@@ -8,41 +8,30 @@ import { Blog } from "@/app/types/blog";
 export default function Search({ blogs }: { blogs: Blog[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  // URLから選択中の海賊団を取得
   const selectedCrew = searchParams.get("crew") || "all";
-
   const [keyword, setKeyword] = useState("");
 
-  // =========================
   // キーワード検索
-  // =========================
   const filtered = useMemo(() => {
-    return blogs.filter((blog) =>
+    return (blogs ?? []).filter((blog) =>
       blog.title.toLowerCase().includes(keyword.toLowerCase()),
     );
   }, [blogs, keyword]);
 
-  // =========================
   // 海賊団ごとにグループ化 + 並び順
-  // =========================
   const grouped = useMemo(() => {
     const g: Record<string, Blog[]> = {};
-
     filtered.forEach((blog) => {
       const crew = blog.crew || "その他";
       if (!g[crew]) g[crew] = [];
       g[crew].push(blog);
     });
-
     Object.keys(g).forEach((crew) => {
       g[crew].sort((a, b) => Number(a.suuji ?? 9999) - Number(b.suuji ?? 9999));
     });
-
     return g;
   }, [filtered]);
 
-  // 表示順
   const crewOrder = [
     "麦わらの一味",
     "ハートの海賊団",
@@ -61,9 +50,6 @@ export default function Search({ blogs }: { blogs: Blog[] }) {
     ...Object.keys(grouped).filter((crew) => !crewOrder.includes(crew)),
   ];
 
-  // =========================
-  // 海賊団変更
-  // =========================
   const changeCrew = (crew: string) => {
     if (crew === "all") {
       router.push("/blog");
@@ -158,7 +144,6 @@ export default function Search({ blogs }: { blogs: Blog[] }) {
                         "0 6px 18px rgba(0,0,0,0.1)";
                     }}
                   >
-                    {/* 画像 */}
                     {blog.eyecatch && (
                       <img
                         src={blog.eyecatch.url}
@@ -170,8 +155,6 @@ export default function Search({ blogs }: { blogs: Blog[] }) {
                         }}
                       />
                     )}
-
-                    {/* タイトル */}
                     <div style={{ padding: "12px" }}>
                       <h3 style={{ fontSize: "16px" }}>{blog.title}</h3>
                     </div>

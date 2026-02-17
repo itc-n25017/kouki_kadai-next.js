@@ -1,6 +1,7 @@
 import { client } from "@/app/lib/microcms";
 import { Blog } from "@/app/types/blog";
 import Search from "./search";
+import { Suspense } from "react"; // ← 追加
 
 async function getBlogs(): Promise<Blog[]> {
   let allBlogs: Blog[] = [];
@@ -24,5 +25,10 @@ async function getBlogs(): Promise<Blog[]> {
 
 export default async function BlogPage() {
   const blogs = await getBlogs();
-  return <Search blogs={blogs} />;
+
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Search blogs={blogs} />
+    </Suspense>
+  );
 }

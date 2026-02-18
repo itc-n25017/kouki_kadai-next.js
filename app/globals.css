@@ -308,3 +308,18 @@ body::before {
   padding-bottom: 8px;
   margin-bottom: 20px;
 }
+/* ===== フッターを画面下に固定（Flexbox） ===== */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}

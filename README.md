@@ -1,37 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+・機能説明
+キャラ名、キャラ説明、検索、海賊団ごとのグループ分け
 
-## Getting Started
+・ページ構成の仕組み
+全キャラ表示（海賊団ごとに）
+各海賊団ごとのページ
 
-First, run the development server:
+・ディレクトリ構成の説明
+APPディレクトリ（ページ、ルーティングを担当）
+blogディレクトリ（詳細ページのUI）
+conponentsディレクトリ（何度も利用なUI部品を格納）
+libディレクトリ（外部サービスとの接続：micloCMSなど）
+typesディレクトリ（typeScriptの型定義を管理）
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+・microCMSにアクセスする処理の説明
+microCMSが提供するmicrocms-js-sdkを使用してAPI通信を行っている。
+サービスドメインとAPIキーは環境変数から取得し、セキュリティを確保している。
+createClient()を用いてクライアントを生成し、このクライアントを通してmicroCMSのデータにアクセスしている。
+（なぜ環境変数を使うのか）
+APIキーなどの機密情報をソースコードに直接記述すると、GitHubなどに公開された際に漏洩する危険がある。
+そのため、環境変数を利用して外部から値を読み込むことで、セキュリティを確保している。
+また、開発環境と本番環境で設定を簡単に切り替えることができる。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+・工夫した点
+検索サイト（キャラごとの検索と、海賊団ごとにわけて表示する）
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# kouki_kadai-next.js
+・苦労した点
+microCMSの接続ができなかった
+buildができなくて色々

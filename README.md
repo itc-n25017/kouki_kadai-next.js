@@ -12,6 +12,47 @@ conponentsディレクトリ（何度も利用なUI部品を格納）
 libディレクトリ（外部サービスとの接続：micloCMSなど）
 typesディレクトリ（typeScriptの型定義を管理）
 
+kouki_kadai/
+├── speach.memo
+└── my-app/
+├── .gitignore
+├── README.md
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── speak.memo
+├── tsconfig.json
+├── app/
+│ ├── favicon.ico
+│ ├── globals.css
+│ ├── layout.tsx
+│ ├── page.tsx
+│ ├── blog/
+│ │ ├── page.tsx
+│ │ ├── search.tsx
+│ │ └── [id]/
+│ │ └── page.tsx
+│ ├── components/
+│ │ ├── Card.tsx
+│ │ ├── Container.tsx
+│ │ ├── Footer.tsx
+│ │ ├── Header.tsx
+│ │ └── Pagination.tsx
+│ ├── lib/
+│ │ └── microcms.ts
+│ └── types/
+│ └── blog.ts
+└── public/
+├── file.svg
+├── fire.gif
+├── globe.svg
+├── map.png
+├── next.svg
+├── vercel.svg
+├── wave.svg
+└── window.svg
 
 ・microCMSにアクセスする処理の説明
 microCMSが提供するmicrocms-js-sdkを使用してAPI通信を行っている。
